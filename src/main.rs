@@ -10,7 +10,7 @@ fn index() -> &'static str {
 #[post("/post_test", format="application/json", data="<data>")]
 fn test(data : String) -> String {
     println!("Received data: {:?}", data);
-    "Data received sucessfully!".to_string()
+    "Data received successfully!".to_string()
 }
 
 fn main() {
