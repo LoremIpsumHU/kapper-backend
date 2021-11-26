@@ -14,7 +14,6 @@ fn test(data : String) -> String {
 }
 
 fn main() {
-    println!("{}", "hi");
     rocket::ignite()
     .mount("/", routes![index, test]).launch();
 }
