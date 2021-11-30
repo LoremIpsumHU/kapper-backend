@@ -1,5 +1,7 @@
 import express from "express";
+const { Client } = require('pg')
 
+const client = new Client();
 const app = express();
 
 app.get("/", (request, response) => {
@@ -14,6 +16,12 @@ app.get("/api/products", (request, response) => {
         "image": "",
         "category": "test_category"
     }];
+
+    //client.connect();
+    // client.query('SELECT $1::text as message', ['Hello world!'], (err, res) => {
+    //     console.log(err ? err.stack : res.rows[0].message) // Hello World!
+    //     client.end()
+    // })
 
     response.json(testData);
 })
