@@ -6,7 +6,7 @@ app.get("/", (request, response) => {
     response.send("This is a test web page!");
 })
 
-app.get("/productdata", (request, response) => {
+app.get("/api/products", (request, response) => {
     let testData = [{
         "name": "test product",
         "description": "",
