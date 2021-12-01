@@ -1,7 +1,7 @@
 name: AUTO DEPLOY CONTAINER
 
 env:
-   REPOSITORY_NAME: kapper-dashboard
+   REPOSITORY_NAME: kapper-backend
    IMAGE_TAG: dev
 
 on:
