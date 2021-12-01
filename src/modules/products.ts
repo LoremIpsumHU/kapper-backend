@@ -2,7 +2,7 @@ import express, { Router, Request, Response } from "express";
 
 const router: Router = express.Router();
 
-router.get("/api/products", (request: any, response: any) => {
+router.get("/products", (request: any, response: any) => {
     let testData = [{
         "name": "test product",
         "description": "",

@@ -7,7 +7,7 @@ app.get("/", (request, response) => {
     response.send("This is a test web page!");
 })
 
-app.use('/', products);
+app.use('/api', products);
 
 app.listen(3000, () => {
     console.log("The application is listening on port 3000!");
