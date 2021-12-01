@@ -1,14 +1,8 @@
-import express from "express";
-const { Client } = require('pg')
+import express, { Router, Request, Response } from "express";
 
-const client = new Client();
-const app = express();
+const router: Router = express.Router();
 
-app.get("/", (request, response) => {
-    response.send("This is a test web page!");
-})
-
-app.get("/api/products", (request, response) => {
+router.get("/api/products", (request: any, response: any) => {
     let testData = [{
         "name": "test product",
         "description": "",
@@ -26,6 +20,4 @@ app.get("/api/products", (request, response) => {
     response.json(testData);
 })
 
-app.listen(3000, () => {
-    console.log("The application is listening on port 3000!");
-})
+export default router;
