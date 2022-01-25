@@ -1,13 +1,14 @@
 import express from "express";
-import products from "./modules/products";
+import appointments from "./modules/appointments";
+var cors = require('cors');
 
 const app = express();
 
-app.get("/", (request, response) => {
-    response.send("This is a test web page!");
-})
+require('dotenv').config();
 
-app.use('/api', products);
+app.use(cors({origin: "*"}));
+
+app.use('/appointments', appointments);
 
 app.listen(3000, () => {
     console.log("The application is listening on port 3000!");
