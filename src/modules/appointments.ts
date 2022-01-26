@@ -23,4 +23,37 @@ router.get("/:id", (request: any, response: any) => {
    });
 }); 
 
+router.post("/", (request: any, response: any) => {
+   var tr: any = {'Knippen': 1, 'Wassen': 2, 'Kleuren': 3}
+   var barb: any = {'Kevin': 1, 'Alisha': 2, 'Tobias': 3, 'Pieter': 4}
+   db.query(`INSERT INTO appointments (name, email, phone, start_time, comment) VALUES ($1, $2, $3, $4, $5) RETURNING id as appointment_id;
+   `, [request.body.name, request.body.email, request.body.phone, request.body.start_time, request.body.comment]).then((result: any) => {
+      var app_id = result[0].appointment_id;
+
+      for (var treatment in request.body.treatments) {
+         var treatment_name = request.body.treatments[treatment];
+         var treatment_id = tr[treatment_name];
+
+         db.query(`INSERT INTO appointment_treatments (appointment_id, treatment_id) VALUES ($1, $2);
+         `, [app_id, treatment_id]).then((result: any) => {
+         }).catch((error: any) => {
+            return response.json({status: "error", message: 'Error in the database.', error});
+         });
+      }
+
+      var barber_name = request.body.barber_name;
+      var barber_id = barb[barber_name];
+      db.query(`INSERT INTO barber_appointments (appointment_id, barber_id) VALUES ($1, $2);
+      `, [app_id, barber_id]).then((result: any) => {
+         
+      }).catch((error: any) => {
+         return response.json({status: "error", message: 'Error in the database.', error});
+      });
+
+      response.json({status: "success", data: result});
+   }).catch((error: any) => {
+      return response.json({status: "error", message: 'Error in the database.', error});
+   });
+});
+
 export default router; 

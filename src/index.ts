@@ -1,12 +1,15 @@
 import express from "express";
 import appointments from "./modules/appointments";
-var cors = require('cors');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const app = express();
 
 require('dotenv').config();
 
 app.use(cors({origin: "*"}));
+
+app.use(bodyParser.json());
 
 app.use('/appointments', appointments);
 
