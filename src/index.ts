@@ -10,7 +10,6 @@ require('dotenv').config();
 app.use(cors({origin: "*"}));
 
 app.use(bodyParser.json());
-
 app.use('/appointments', appointments);
 
 app.listen(3000, () => {

@@ -55,5 +55,4 @@ router.post("/", (request: any, response: any) => {
       return response.json({status: "error", message: 'Error in the database.', error});
    });
 });
-
 export default router; 
